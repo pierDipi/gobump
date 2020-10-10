@@ -5,6 +5,7 @@ import (
 	"log"
 	"os"
 	"path/filepath"
+	"regexp"
 	"strings"
 
 	"golang.org/x/mod/modfile"
@@ -72,4 +73,8 @@ func NonGoMod(path string) bool {
 
 func Vendor(path string) bool {
 	return strings.Contains(path, "vendor")
+}
+
+func Exclude(regex *regexp.Regexp) SkipFile {
+	return regex.MatchString
 }
