@@ -5,7 +5,9 @@ on:
     branches: [ main ]
   pull_request:
     branches: [ main ]
-
+  repository_dispatch:
+    types: [ test-command ]
+    
 jobs:
 
   build:
@@ -21,6 +23,9 @@ jobs:
 
     - name: Check out code into the Go module directory
       uses: actions/checkout@v2
+    - name: Git commit
+      run: |
+        git log --oneline --name-status HEAD^..HEAD
 
     - name: Get dependencies
       run: |
