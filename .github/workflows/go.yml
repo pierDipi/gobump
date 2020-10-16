@@ -23,9 +23,10 @@ jobs:
 
     - name: Check out code into the Go module directory
       uses: actions/checkout@v2
-    - name: Git commit
+      
+    - name: Print info
       run: |
-        git log --oneline --name-status HEAD^..HEAD
+        echo ${{ toJson(github.event.client_payload) }}
 
     - name: Get dependencies
       run: |
